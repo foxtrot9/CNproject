@@ -6,28 +6,34 @@ typedef struct {
 	float **adjMat;	// Adjacency Matrix
 } Graph;
 
-Graph makeGraph(int nodes) {
-	Graph g1;
-	g1.nodes = nodes;
-	g1.adjMat = (float **) malloc(nodes*nodes);
+Graph *makeGraph(int nodes) {
+	Graph *g1;
+	g1->nodes = nodes;
+	/* allocate the array */
+	g1->adjMat = (float **) malloc(nodes * sizeof(float *));
+	int i;
+	for (i = 0; i < g1->nodes; ++i)
+	{
+		g1->adjMat[i] = (float *) malloc(nodes * sizeof(float));
+	}
 	return g1;
 }
 
-void addEdge(Graph g, int source, int target, float edgeValue) {
-	g.adjMat[target][source] = edgeValue;
+void addEdge(Graph *g, int source, int target, float edgeValue) {
+	g->adjMat[target][source] = edgeValue;
 }
 
-void normalizeGraph(Graph g) {
+void normalizeGraph(Graph *g) {
 	int i, j;
 	float sum = 0;
-	for (i = 0; i < g.nodes; ++i) {
+	for (i = 0; i < g->nodes; ++i) {
 		sum = 0;
-		for (j = 0; j < g.nodes; ++j) {
-			sum += g.adjMat[i][j];
+		for (j = 0; j < g->nodes; ++j) {
+			sum += g->adjMat[i][j];
 		}
 		if(sum > 0.001f) {
-			for (j = 0; j < g.nodes; ++j) {
-				g.adjMat[i][j] = g.adjMat[i][j] / sum;
+			for (j = 0; j < g->nodes; ++j) {
+				g->adjMat[i][j] = g->adjMat[i][j] / sum;
 			}
 		}
 	}
