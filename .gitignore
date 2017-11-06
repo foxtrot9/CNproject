@@ -1,0 +1,11 @@
+cmake-build-debug/**
+CMakeLists.txt
+.idea/**
+*.out
+data/**
+*.gml
+*.png
+*.paj
+*.zip
+*.csv
+*.xml
