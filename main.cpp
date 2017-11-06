@@ -40,6 +40,6 @@ void normalizeGraph(Graph *g) {
 }
 
 int main() {
-	printf("Hello World!\n");
+	printf("Hello World CPP!\n");
 	return 0;
 }
