@@ -7,9 +7,9 @@ typedef struct {
 } Graph;
 
 Graph *makeGraph(int nodes) {
-	Graph *g1;
+	Graph *g1 = (Graph *) malloc(sizeof(Graph));
 	g1->nodes = nodes;
-	/* allocate the array */
+	/* allocate the matrix */
 	g1->adjMat = (float **) malloc(nodes * sizeof(float *));
 	int i;
 	for (i = 0; i < g1->nodes; ++i)
